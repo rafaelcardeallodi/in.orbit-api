@@ -9,3 +9,5 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=in-orbit-api
+    volumes:
+      - ./docker:/docker-entrypoint-initdb.d
