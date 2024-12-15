@@ -13,8 +13,11 @@ interface GetUserResponse {
 
 export async function getAccessTokenFromCode(code: string) {
   const accessTokenUrl = new URL('https://github.com/login/oauth/access_token')
-  accessTokenUrl.searchParams.set('client_id', env.GITHUB_CLIENT_ID)
-  accessTokenUrl.searchParams.set('client_secret', env.GITHUB_CLIENT_SECRET)
+  accessTokenUrl.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
+  accessTokenUrl.searchParams.set(
+    'client_secret',
+    env.GITHUB_OAUTH_CLIENT_SECRET
+  )
   accessTokenUrl.searchParams.set('code', code)
 
   const response = await fetch(accessTokenUrl, {
