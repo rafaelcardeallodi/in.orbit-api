@@ -8,6 +8,6 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=in-orbit-api
+      - POSTGRES_DB=inorbit
     volumes:
       - ./docker:/docker-entrypoint-initdb.d
