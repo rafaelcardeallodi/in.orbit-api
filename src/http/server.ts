@@ -5,18 +5,19 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
+import { fastifyCors } from '@fastify/cors'
+import { fastifySwagger } from '@fastify/swagger'
+import { fastifySwaggerUi } from '@fastify/swagger-ui'
+import { fastifyJwt } from '@fastify/jwt'
 
 import { createGoalRoute } from './routes/create-goal'
 import { createCompletionRoute } from './routes/create-completion'
 import { getPendingGoalsRoute } from './routes/get-pending-goals'
 import { getWeekSummaryRoute } from './routes/get-week-summary'
-import { fastifyCors } from '@fastify/cors'
-import { fastifySwagger } from '@fastify/swagger'
-import { fastifySwaggerUi } from '@fastify/swagger-ui'
 import { authenticateFromGithubRoute } from './routes/authenticate-from-github'
-import { fastifyJwt } from '@fastify/jwt'
 import { env } from '../env'
 import { getProfileRoute } from './routes/get-profile'
+import { getUserExperienceAndLevel } from './routes/get-user-experience-and-level'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -51,6 +52,7 @@ app.register(createGoalRoute)
 app.register(createCompletionRoute)
 app.register(getPendingGoalsRoute)
 app.register(getWeekSummaryRoute)
+app.register(getUserExperienceAndLevel)
 
 app
   .listen({
